@@ -1,0 +1,42 @@
+﻿using System;
+using System.Web;
+using System.Data;
+using System.Linq;
+using System.Data.Common;
+using System.Collections.Generic;
+
+/// <summary>
+/// Summary description for ActivityOwner
+/// </summary>
+public class ActivityOwner
+{
+	public ActivityOwner()
+	{
+		//
+		// TODO: Add constructor logic here
+		//
+	}
+
+    public CompleteStaffDetailsInfo activityOwner(string GIDUserName)
+    {
+        OracleCommand comm = GenericDataAccess.CreateCommand();
+        comm.CommandText = StoredProcedure.getUserFromCompleteStaffDetails();
+
+        OracleParameter param = comm.CreateParameter();
+        param.ParameterName = ":EMAIL";
+        param.Value = GIDUserName.ToUpper();
+        param.DbType = DbType.String;
+        param.Size = 200;
+        comm.Parameters.Add(param);
+
+        DataTable dt = GenericDataAccess.ExecuteSelectCommand(comm);
+
+        CompleteStaffDetailsInfo aOwner = new CompleteStaffDetailsInfo();
+        foreach (DataRow dr in dt.Rows)
+        {
+            aOwner = new CompleteStaffDetailsInfo(dr);
+        }
+        return aOwner;
+    }
+
+}

@@ -1,0 +1,123 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+
+/// <summary>
+/// Summary description for ajaxWebExtension
+/// </summary>
+public class ajaxWebExtension
+{
+	public ajaxWebExtension()
+	{
+		//
+		// TODO: Add constructor logic here
+		//
+	}
+
+    public static bool showJscriptAlert(Page oPage, object oThis, string sMessage)
+    {
+        try
+        {
+            if (sMessage.Length > 0)
+            {
+                sMessage = sMessage.Replace("'", "''");
+                string sAlert = "alert('" + sMessage + "')";
+                ScriptManager.RegisterClientScriptBlock(oPage, oThis.GetType(), scriptKeyName(), sAlert, true);
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+
+        }
+        return true;
+    }
+
+    private static string scriptKeyName()
+    {
+        string sNewRndId = "";
+        try
+        {
+            Random oRandom = new Random();
+            for (byte tLoop = 0; tLoop <= 8; tLoop++)
+            {
+                if ((oRandom.Next(1, 10) / 3) == 0)
+                {
+                    sNewRndId = sNewRndId + getRandomNumb();
+                }
+                else
+                {
+                    sNewRndId = sNewRndId + getRandomChar();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+        return sNewRndId;
+    }
+        
+        
+        
+        //Public Shared Function showJscriptAlert(ByVal oPage As Page, ByVal oMe As Object, ByVal sMessage As String) As Boolean
+           
+        //End Function
+
+    public static bool showJscriptAlertCx(System.Web.UI.Control oControl, Object oThis, String sMessage)
+    {
+        try
+        {
+            if (sMessage.Length > 0)
+            {
+                sMessage = sMessage.Replace("'", "''");
+                string sAlert = "alert('" + sMessage + "')";
+                ScriptManager.RegisterClientScriptBlock(oControl, oThis.GetType(), scriptKeyName(), sAlert, true);
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+
+        return true;
+    }
+
+        
+        private static Char getRandomChar()
+        {
+            byte tRndNo;
+            try{
+                Randomize();
+                tRndNo = CType((26 * Rnd()) + 1, Byte)
+                if (tRndNo < 1) tRndNo = 1;
+                if (tRndNo > 26) tRndNo = 26;
+            }
+            catch(Exception ex)
+            {
+                System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+            }
+            return Chr(tRndNo + 64);
+        }
+
+        private static Char getRandomNumb()
+        {
+            Byte tRndNo = 0;
+            try{
+                Randomize();
+                tRndNo = CType(10 * Rnd(), Byte)
+                    if (tRndNo > 9) tRndNo = 9;
+            }
+            catch(Exception ex)
+            {
+                System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+            }
+            return tRndNo.ToString();
+        }
+}
+
+    
+
+

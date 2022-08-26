@@ -1,0 +1,69 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ViewComments.aspx.cs" Inherits="ViewComments" MaintainScrollPositionOnPostback="true" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Assembly="System.Web.Extensions" Namespace="System.Web.UI" TagPrefix="asp" %>
+
+<%@ Register Src="~/UserControl/FunctionalRepresentativesComments.ascx" TagName="FunctionalRepresentativesComments" TagPrefix="uc1" %>
+<%@ Register Src="~/UserControl/ProductionRepresentativeComment.ascx" TagName="ProductionRepresentativeComment" TagPrefix="uc2" %>
+<%@ Register Src="~/UserControl/ChangeReviewBoardComment.ascx" TagName="ChangeReviewBoardComment" TagPrefix="uc3" %>
+<%@ Register Src="~/UserControl/RequestInformation.ascx" TagName="RequestInformation" TagPrefix="uc4" %>
+<%@ Register Src="~/UserControl/IAPPlannerComment.ascx" TagName="IAPPlannerComment" TagPrefix="uc5" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="../CSS/Styles.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="../CSS/navigationStyle.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="width: 700px">
+            <div style="color: Black">
+                <telerik:RadScriptManager ID="Radscriptmanager1" runat="server"></telerik:RadScriptManager>
+                <uc4:RequestInformation ID="RequestInformation2" runat="server" />
+                <h3 style="color: black">Approval Workflow</h3>
+
+                <telerik:RadTabStrip RenderMode="Lightweight" runat="server" Skin="Silk" ID="RadTabStrip1" AutoPostBack="True" MultiPageID="RadMultiPage1" SelectedIndex="0">
+                    <Tabs>
+                        <telerik:RadTab Text="Functional Authorizer" Selected="True"></telerik:RadTab>
+                        <telerik:RadTab Text="IAP Planner"></telerik:RadTab>
+                        <telerik:RadTab Text="Production Asset Authorizer"></telerik:RadTab>
+                        <telerik:RadTab Text="Change Review Board"></telerik:RadTab>
+                    </Tabs>
+                </telerik:RadTabStrip>
+
+                <telerik:RadMultiPage runat="server" ID="RadMultiPage1" SelectedIndex="0">
+                    <telerik:RadPageView runat="server" ID="RadPageView1">
+                        <div class="contentWrapper">
+                            <uc1:FunctionalRepresentativesComments ID="FunctionalRepresentativesComments1" runat="server" />
+                        </div>
+                    </telerik:RadPageView>
+                    <telerik:RadPageView runat="server" ID="RadPageView2">
+                        <div class="contentWrapper">
+                            <uc5:IAPPlannerComment ID="IAPPlannerComment1" runat="server" />
+                        </div>
+                    </telerik:RadPageView>
+
+                    <telerik:RadPageView runat="server" ID="RadPageView3">
+                        <div class="contentWrapper">
+                            <uc2:ProductionRepresentativeComment ID="ProductionRepresentativeComment1" runat="server" />
+                        </div>
+                    </telerik:RadPageView>
+
+                    <telerik:RadPageView runat="server" ID="RadPageView4">
+                        <div class="contentWrapper">
+                            <uc3:ChangeReviewBoardComment ID="ChangeReviewBoardComment1" runat="server" />
+                        </div>
+                    </telerik:RadPageView>
+                </telerik:RadMultiPage>
+
+            </div>
+            <br />
+            <uc4:RequestInformation ID="RequestInformation1" runat="server" />
+        </div>
+    </form>
+</body>
+</html>
+

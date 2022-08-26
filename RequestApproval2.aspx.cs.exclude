@@ -1,0 +1,106 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class RequestApproval2 : aspnetPage
+{
+    aRequest oRequest = new aRequest();
+    string sfield = "REQUEST_NUMBER";
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Request.QueryString["RequestId"] != null)
+        {
+            long lRequestId = long.Parse(Request.QueryString["RequestId"].ToString());
+            RequestInformation1.LoadRequest(lRequestId);
+
+            if (!IsPostBack)
+            {
+                //ApprovalWorkFlow.FillApprovalDropDownList(standddl);
+                
+                List<Users> CRB = UsersActions.lstGetUsersByRoleId((int)appUsersRoles.userRole.ChangeReviewBoardChairman);
+                foreach (Users xCRB in CRB)
+                {
+                    crbddl.Items.Add(new ListItem(xCRB.m_sFullName, xCRB.m_iUserId.ToString()));
+                }
+
+                //List<Users> PAR = UsersActions.lstGetUsersByRoleId((int)appUsersRoles.userRole.ProductionAssetAuthorizer);
+                //foreach (Users xPAR in PAR)
+                //{
+                //    parddl.Items.Add(new ListItem(xPAR.m_sFullName, xPAR.m_iUserId.ToString()));
+                //}
+
+                //List<Users> FunctionalRepresentatives = UsersActions.lstGetUsersByRoleId((int)appUsersRoles.userRole.FunctionalAuthorizer);
+                //foreach (Users xFunctionalRepresentatives in FunctionalRepresentatives)
+                //{
+                //    FRCheckBoxList.Items.Add(new ListItem(xFunctionalRepresentatives.m_sFullName, xFunctionalRepresentatives.m_iUserId.ToString()));
+                //}
+            }
+        }
+    }
+
+    protected void forwardButton_Click(object sender, EventArgs e)
+    {
+        bool bRet = false;
+        long lRequestId = long.Parse(Request.QueryString["RequestId"].ToString());
+        oRequest = RequestHelper.objGetRequestByRequestId(lRequestId, sfield);
+        Users oActivityOwner = UsersActions.objGetIapOwnerByUserId(oRequest.m_iUserId);
+
+        if (crbddl.SelectedValue == RequestStatus.m_iDropDownListFirstIndexValue.ToString())
+        {
+            string message = "Please select Change Review Board Chairman";
+            ajaxWebExtension.showJscriptAlert(Page, this, message);
+            //this.ClientScript.RegisterClientScriptBlock(typeof(string), "key0", string.Format("alert('{0}');", message), true);
+        }
+        else if (crbddl.SelectedValue != RequestStatus.m_iDropDownListFirstIndexValue.ToString())
+        {
+            //Update the IAP Planner's comment on the IAP_COMMENTS table
+            bRet = ApprovalWorkFlow.RequestApprovalProcess(txtComment.Text, oRequest.lRequestId, RequestStatus.m_iApproved, oSessnx.getOnlineUser.m_iUserId);
+
+            //Assign request to Change Review Board Chairman
+            bRet = ApprovalWorkFlow.ForwardsRequestToApprovers(oRequest.lRequestId, int.Parse(crbddl.SelectedValue));
+
+            //Update the IAP Request Status in the IAP_REQUESTFORM table
+            bRet = ApprovalWorkFlow.UpdateRequestFlowStatus(oRequest.lRequestId, RequestStatus.m_iChangeReviewBoardChairman);
+
+            structUserMailIdx nextApprover = UsersActions.objGetUserByUserId(int.Parse(crbddl.SelectedValue)).structUserIdx;
+            List<structUserMailIdx> cc = new List<structUserMailIdx>();
+            cc.Add(oActivityOwner.structUserIdx);
+
+            SendMail MyMail = new SendMail(oSessnx.getOnlineUser.structUserIdx);
+            //get the email address of the Activity Owner of the Change Request
+            MyMail.NotifyNextApprover(nextApprover, oRequest.m_sORIGINATOR, oRequest.m_sRequestNumber, oRequest.m_sProjectActivity, Utilities.AppURL(), cc);
+
+            Response.Redirect("~/Common/IAPRequestList.aspx");
+        }
+    }
+
+    //int ValidateFunctionalRepSelection()
+    //{
+    //    int kount = 0;
+    //    foreach (ListItem li in FRCheckBoxList.Items)
+    //    {
+    //        if (li.Selected)
+    //        {
+    //            kount++;
+    //        }
+    //    }
+    //    return kount;
+    //}
+
+    protected void closeButton_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Common/IAPRequestList.aspx");
+    }
+    protected void btnRedraft_Click(object sender, EventArgs e)
+    {
+        //Send request redraft notification to the request owner
+    }
+    protected void btnClose_Click(object sender, EventArgs e)
+    {
+
+    }
+}

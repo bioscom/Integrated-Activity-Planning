@@ -1,0 +1,57 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Text;
+using System.Data;
+using System.Data.Common;
+
+/// <summary>
+/// Summary description for appUsers
+/// </summary>
+public class appUsers
+{
+    public int m_iUserId { get; set; }
+    public string m_sUserName { get; set; }
+    public string m_sUserMail { get; set; }
+    public string m_sFullName { get; set; }
+    public string m_sRefInd { get; set; }
+    public int m_sStatus { get; set; }
+    public int m_iRoleId { get; set; }
+    public DateTime m_dLoginTime = DateTime.Now;
+    public appUsersRoles.userRole m_eUserRole;
+    public bool m_bIsGuestAcct = true;
+    public string m_sPassword { get; set; }
+
+    public int m_iStatus { get; set; }
+    public int m_iDeligate { get; set; }
+
+    public appUsers()
+    {
+
+    }
+
+    public appUsers(DataRow dr)
+    { 
+        m_iUserId = int.Parse(dr["USERID"].ToString());
+        m_sUserName = dr["USERNAME"].ToString();
+        m_sUserMail = dr["EMAIL"].ToString();
+        m_sFullName = dr["FULLNAME"].ToString();
+        m_sRefInd = dr["REFIND"].ToString();
+        m_iRoleId = int.Parse(dr["ROLEID"].ToString());
+        m_eUserRole = (appUsersRoles.userRole)(int.Parse(dr["ROLEID"].ToString()));
+        m_sStatus = int.Parse(dr["STATUS"].ToString());
+        m_sPassword = dr["PASSWORD"].ToString();
+
+        m_iStatus = int.Parse(dr["STATUS"].ToString());
+        m_iDeligate = int.Parse(dr["DELIGATED"].ToString());
+    }
+
+    public structUserMailIdx structUserIdx
+    {
+        get
+        {
+            return new structUserMailIdx(m_sFullName, m_sUserMail, m_sUserName);
+        }
+    }
+}

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    
+      <siteMapNode title="Integrated Activity Planninng" description="Integrated Activity Planninng">
+        
+        <siteMapNode title="User Management">
+          <siteMapNode title="Add New User" url="~/Admin/Users.aspx" description="Create New User" />
+          <siteMapNode title="View all users" url="~/Admin/ViewUsers.aspx" />
+        </siteMapNode>
+
+        <siteMapNode title="IAP Activities">
+          <siteMapNode title="Change Requests" url="~/Common/ChangeRequests.aspx" />
+          <siteMapNode title="My Change Requests" url="~/Common/myIAPRequestList.aspx" />
+          <!--<siteMapNode title="Pending Change Requests" url="~/Common/IAPRequestList.aspx" />
+          <siteMapNode title="Approved Change Requests" url="~/Common/ApprovedRequests.aspx" />-->
+          <siteMapNode title="Fill Change Control Form" url="~/Common/Default.aspx"/>
+          <siteMapNode title="Edit Change Control Form" url="~/Common/EditRequestForm.aspx"/>
+          <siteMapNode title="View Comments" url="~/Common/ViewComments.aspx" />
+        </siteMapNode>
+        
+        <siteMapNode title="Absence Management">
+          <siteMapNode title="IAP Router" url="~/Common/IAPApproverRouter.aspx" />
+        </siteMapNode>
+        
+      </siteMapNode>  
+</siteMap>

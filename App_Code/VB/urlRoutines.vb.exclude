@@ -1,0 +1,66 @@
+﻿Imports Microsoft.VisualBasic
+Imports System.Diagnostics
+Imports System.Web
+Imports System
+
+Public Class urlRoutines
+    Public Shared Function getAppResourceUrl(ByVal sTargetPage As String) As String
+        Dim sRet As String = ""
+        Try
+            sTargetPage = sTargetPage.Replace("\", "/")
+            Dim sCurrentUrl As String = HttpContext.Current.Request.Url.AbsoluteUri
+            Dim sTempUrl As String = HttpContext.Current.Request.Url.Query
+            If sTempUrl.Length > 0 Then sCurrentUrl = sCurrentUrl.Replace(sTempUrl, "")
+            sTempUrl = HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath
+            Dim tPos As Byte = sTempUrl.IndexOf("/")
+            If tPos > 0 Then sTempUrl = sTempUrl.Substring(tPos)
+            sCurrentUrl = sCurrentUrl.Replace(sTempUrl, "")
+            tPos = sTargetPage.IndexOf("/")
+            If tPos > 0 Then
+                sRet = sCurrentUrl & sTargetPage.Substring(tPos)
+            End If
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    'Private Shared Function appendPathSlash(ByVal sPath As String, ByVal sSlash As String) As String
+    '    Dim sRet As String = ""
+    '    Try
+    '        If Right(sPath, 1) <> sSlash Then sPath = sPath & sSlash
+    '        sRet = sPath
+    '    Catch ex As Exception
+    '        Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+    '    End Try
+    '    Return sRet
+    'End Function
+    Private Shared Function appendPathSlash(ByVal sPath As String, ByVal sSlash As String) As String
+        Dim sRet As String = ""
+        Try
+            If Right(sPath, 1) = "/" Then sPath = sPath.Substring(0, sPath.Length - 1)
+            If Right(sPath, 1) = "\" Then sPath = sPath.Substring(0, sPath.Length - 1)
+            sRet = sPath & sSlash
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Shared Function appendWebSlash(ByVal sPath As String) As String
+        Dim sRet As String = ""
+        Try
+            sRet = appendPathSlash(sPath, "/")
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Shared Function appendFileSysSlash(ByVal sPath As String) As String
+        Dim sRet As String = ""
+        Try
+            sRet = appendPathSlash(sPath, "\")
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+End Class

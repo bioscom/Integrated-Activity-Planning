@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28714.193
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "IAP", ".", "{3E9C9A4F-AE5C-47B9-831D-4C9D8285436F}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		Debug.AspNetCompiler.VirtualPath = "/IAP"
+		Debug.AspNetCompiler.PhysicalPath = "..\IAP\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\IAP\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/IAP"
+		Release.AspNetCompiler.PhysicalPath = "..\IAP\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\IAP\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "2639"
+		SlnRelativePath = "..\IAP\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E9C9A4F-AE5C-47B9-831D-4C9D8285436F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E9C9A4F-AE5C-47B9-831D-4C9D8285436F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {694A117F-5019-48C8-9689-9A2F89A34259}
+	EndGlobalSection
+EndGlobal

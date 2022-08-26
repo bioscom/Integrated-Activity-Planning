@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Report" targetNamespace="http://tempuri.org/Report.xsd" xmlns:mstns="http://tempuri.org/Report.xsd" xmlns="http://tempuri.org/Report.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="IAPConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="IAPConnectionString (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.IAPConnectionString.ConnectionString" Provider="System.Data.OracleClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ApproversCommentsTableAdapter" Name="ApproversComments">
+            <MainSource>
+              <DbSource ConnectionRef="IAPConnectionString (Web.config)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
+                <SelectCommand>
+                  <OracleCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        IAP_COMMENTS.COMMENTS, IAP_COMMENTS.REQUEST_NUMBER, IAP_COMMENTS.COMMENTSDATE, IAP_COMMENTS.STATUS, 
+                         IAP_COMMENTS.DATE_RECEIVED, IAP_USERS.FULLNAME ||' - '|| IAP_FUNCTIONS."FUNCTION" AS NAMEFUNCTION, IAP_USERROLES."ROLE"
+FROM            IAP_USERS, IAP_USERROLES, IAP_COMMENTS, IAP_REQUESTFORM, IAP_FUNCTIONS
+WHERE        IAP_USERS.ROLEID = IAP_USERROLES.ROLEID AND IAP_USERS.IDUSER = IAP_COMMENTS.IDUSER AND 
+                         IAP_COMMENTS.REQUEST_NUMBER = IAP_REQUESTFORM.REQUEST_NUMBER AND IAP_USERS.FUNCTIONID = IAP_FUNCTIONS.FUNCTIONID</CommandText>
+                    <Parameters />
+                  </OracleCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="COMMENTS" DataSetColumn="COMMENTS" />
+              <Mapping SourceColumn="REQUEST_NUMBER" DataSetColumn="REQUEST_NUMBER" />
+              <Mapping SourceColumn="COMMENTSDATE" DataSetColumn="COMMENTSDATE" />
+              <Mapping SourceColumn="STATUS" DataSetColumn="STATUS" />
+              <Mapping SourceColumn="DATE_RECEIVED" DataSetColumn="DATE_RECEIVED" />
+              <Mapping SourceColumn="ROLE" DataSetColumn="ROLE" />
+              <Mapping SourceColumn="NAMEFUNCTION" DataSetColumn="NAMEFUNCTION" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RequestFormReportTableAdapter" Name="RequestFormReport">
+            <MainSource>
+              <DbSource ConnectionRef="IAPConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
+                <SelectCommand>
+                  <OracleCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT IAP_REQUESTFORM.REQUEST_NUMBER, IAP_OU.OU, IAP_AREA.AREA, IAP_LOCATIONS.LOCATION, IAP_REQUESTFORM.PROJECT_ACTIVITY, IAP_PLANTYPES.PLANTYPE, IAP_REQUESTFORM.PLANISSUE, 
+                  IAP_CHANGE_TYPE."TYPE", IAP_REQUESTFORM.WO_NO, IAP_REQUESTFORM.ORIGINATOR, IAP_REQUESTFORM.REQUESTDATE, IAP_REQUESTFORM.PROPOSAL, IAP_REQUESTFORM.BENEFIT, 
+                  IAP_REQUESTFORM.RISK, IAP_REQUESTFORM.PVOL, IAP_REQUESTFORM.NVOL, IAP_REQUESTFORM.PCOST, IAP_REQUESTFORM.NCOST, IAP_REQUESTFORM.PVOLGAS, IAP_REQUESTFORM.NVOLGAS, 
+                  IAP_USERS.FULLNAME, IAP_REQUESTFORM.ORIGINALFROM, IAP_REQUESTFORM.ORIGINALTO, IAP_REQUESTFORM.REQUESTEDFROM, IAP_REQUESTFORM.REQUESTEDTO, IAP_REQUESTFORM.STATUS, 
+                  IAP_REQUESTFORM.PRIMAVERA_ACTIVITYID, IAP_REQUESTFORM.IMPACT_ANALYSIS, IAP_REQUESTFORM.GH20, IAP_REQUESTFORM.LH20
+FROM     IAP_REQUESTFORM, IAP_USERS, IAP_CHANGE_TYPE, IAP_LOCATIONS, IAP_AREA, IAP_PLANTYPES, IAP_OU
+WHERE  IAP_REQUESTFORM.IDUSER = IAP_USERS.IDUSER AND IAP_REQUESTFORM.IDCHANGE = IAP_CHANGE_TYPE.IDCHANGE AND IAP_REQUESTFORM.LOCATIONID = IAP_LOCATIONS.LOCATIONID AND 
+                  IAP_LOCATIONS.IDAREA = IAP_AREA.IDAREA AND IAP_REQUESTFORM.PLANTYPEID = IAP_PLANTYPES.PLANTYPEID AND IAP_AREA.IDOU = IAP_OU.IDOU</CommandText>
+                    <Parameters />
+                  </OracleCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="REQUEST_NUMBER" DataSetColumn="REQUEST_NUMBER" />
+              <Mapping SourceColumn="OU" DataSetColumn="OU" />
+              <Mapping SourceColumn="AREA" DataSetColumn="AREA" />
+              <Mapping SourceColumn="LOCATION" DataSetColumn="LOCATION" />
+              <Mapping SourceColumn="PROJECT_ACTIVITY" DataSetColumn="PROJECT_ACTIVITY" />
+              <Mapping SourceColumn="PLANTYPE" DataSetColumn="PLANTYPE" />
+              <Mapping SourceColumn="PLANISSUE" DataSetColumn="PLANISSUE" />
+              <Mapping SourceColumn="TYPE" DataSetColumn="TYPE" />
+              <Mapping SourceColumn="WO_NO" DataSetColumn="WO_NO" />
+              <Mapping SourceColumn="ORIGINATOR" DataSetColumn="ORIGINATOR" />
+              <Mapping SourceColumn="REQUESTDATE" DataSetColumn="REQUESTDATE" />
+              <Mapping SourceColumn="PROPOSAL" DataSetColumn="PROPOSAL" />
+              <Mapping SourceColumn="BENEFIT" DataSetColumn="BENEFIT" />
+              <Mapping SourceColumn="RISK" DataSetColumn="RISK" />
+              <Mapping SourceColumn="PVOLGAS" DataSetColumn="PVOLGAS" />
+              <Mapping SourceColumn="NVOLGAS" DataSetColumn="NVOLGAS" />
+              <Mapping SourceColumn="FULLNAME" DataSetColumn="FULLNAME" />
+              <Mapping SourceColumn="ORIGINALFROM" DataSetColumn="ORIGINALFROM" />
+              <Mapping SourceColumn="ORIGINALTO" DataSetColumn="ORIGINALTO" />
+              <Mapping SourceColumn="REQUESTEDFROM" DataSetColumn="REQUESTEDFROM" />
+              <Mapping SourceColumn="REQUESTEDTO" DataSetColumn="REQUESTEDTO" />
+              <Mapping SourceColumn="STATUS" DataSetColumn="STATUS" />
+              <Mapping SourceColumn="PRIMAVERA_ACTIVITYID" DataSetColumn="PRIMAVERA_ACTIVITYID" />
+              <Mapping SourceColumn="IMPACT_ANALYSIS" DataSetColumn="IMPACT_ANALYSIS" />
+              <Mapping SourceColumn="PVOL" DataSetColumn="PVOL1" />
+              <Mapping SourceColumn="NVOL" DataSetColumn="NVOL1" />
+              <Mapping SourceColumn="PCOST" DataSetColumn="PCOST1" />
+              <Mapping SourceColumn="NCOST" DataSetColumn="NCOST1" />
+              <Mapping SourceColumn="GH20" DataSetColumn="GH20" />
+              <Mapping SourceColumn="LH20" DataSetColumn="LH20" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RequestPersonnelInformationTableAdapter" Name="RequestPersonnelInformation">
+            <MainSource>
+              <DbSource ConnectionRef="IAPConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
+                <SelectCommand>
+                  <OracleCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT IAP_REQUESTFORM.IDREQUEST, IAP_FPSO_CONTACT.ID_CONTACT, IAP_FPSO_CONTACT.CONTACT_PERSON, IAP_LAST_VISIT.ID_LAST_VISIT, IAP_LAST_VISIT.LAST_VISIT, IAP_VISA_TYPE.ID_VISA, 
+                  IAP_VISA_TYPE.VISA_TYPE, IAP_PERSONNEL.ID_PERSONNEL, IAP_PERSONNEL.EMPLOYEE_NAME, IAP_PERSONNEL.GENDER, IAP_PERSONNEL.COMPANY, IAP_PERSONNEL.BOSIET_VALID, 
+                  IAP_PERSONNEL.MEDICAL
+FROM     IAP_REQUESTFORM, IAP_PERSONNEL, IAP_FPSO_CONTACT, IAP_LAST_VISIT, IAP_VISA_TYPE
+WHERE  IAP_REQUESTFORM.IDREQUEST = IAP_PERSONNEL.IDREQUEST AND IAP_PERSONNEL.ID_CONTACT = IAP_FPSO_CONTACT.ID_CONTACT AND 
+                  IAP_PERSONNEL.ID_LAST_VISIT = IAP_LAST_VISIT.ID_LAST_VISIT AND IAP_PERSONNEL.ID_VISA = IAP_VISA_TYPE.ID_VISA</CommandText>
+                    <Parameters />
+                  </OracleCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IDREQUEST" DataSetColumn="IDREQUEST" />
+              <Mapping SourceColumn="ID_CONTACT" DataSetColumn="ID_CONTACT" />
+              <Mapping SourceColumn="CONTACT_PERSON" DataSetColumn="CONTACT_PERSON" />
+              <Mapping SourceColumn="ID_LAST_VISIT" DataSetColumn="ID_LAST_VISIT" />
+              <Mapping SourceColumn="LAST_VISIT" DataSetColumn="LAST_VISIT" />
+              <Mapping SourceColumn="ID_VISA" DataSetColumn="ID_VISA" />
+              <Mapping SourceColumn="VISA_TYPE" DataSetColumn="VISA_TYPE" />
+              <Mapping SourceColumn="ID_PERSONNEL" DataSetColumn="ID_PERSONNEL" />
+              <Mapping SourceColumn="EMPLOYEE_NAME" DataSetColumn="EMPLOYEE_NAME" />
+              <Mapping SourceColumn="GENDER" DataSetColumn="GENDER" />
+              <Mapping SourceColumn="COMPANY" DataSetColumn="COMPANY" />
+              <Mapping SourceColumn="BOSIET_VALID" DataSetColumn="BOSIET_VALID" />
+              <Mapping SourceColumn="MEDICAL" DataSetColumn="MEDICAL" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RequestPECStatusTableAdapter" Name="RequestPECStatus">
+            <MainSource>
+              <DbSource ConnectionRef="IAPConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
+                <SelectCommand>
+                  <OracleCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT IAP_PEC.IDPEC, IAP_PEC.PEC, IAP_PEC_STATUS.IDSTATUS, IAP_PEC_STATUS.STATUS, IAP_REQUESTFORM.IDREQUEST
+FROM     IAP_PEC, IAP_PEC_STATUS, IAP_REQUESTFORM
+WHERE  IAP_PEC.IDPEC = IAP_PEC_STATUS.IDPEC AND IAP_PEC_STATUS.IDREQUEST = IAP_REQUESTFORM.IDREQUEST</CommandText>
+                    <Parameters />
+                  </OracleCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IDPEC" DataSetColumn="IDPEC" />
+              <Mapping SourceColumn="PEC" DataSetColumn="PEC" />
+              <Mapping SourceColumn="IDSTATUS" DataSetColumn="IDSTATUS" />
+              <Mapping SourceColumn="STATUS" DataSetColumn="STATUS" />
+              <Mapping SourceColumn="IDREQUEST" DataSetColumn="IDREQUEST" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Report" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="Report" msprop:Generator_UserDSName="Report">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ApproversComments">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="COMMENTS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="REQUEST_NUMBER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COMMENTSDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="STATUS" type="xs:decimal" />
+              <xs:element name="DATE_RECEIVED" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ROLE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NAMEFUNCTION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RequestFormReport">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="REQUEST_NUMBER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AREA" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LOCATION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PROJECT_ACTIVITY" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PLANTYPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PLANISSUE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TYPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="WO_NO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ORIGINATOR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="REQUESTDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="PROPOSAL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BENEFIT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RISK" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PVOL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NVOL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PCOST" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NCOST" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PVOLGAS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NVOLGAS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FULLNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ORIGINALFROM" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ORIGINALTO" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="REQUESTEDFROM" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="REQUESTEDTO" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="STATUS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PRIMAVERA_ACTIVITYID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IMPACT_ANALYSIS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PVOL1" msdata:Caption="PVOL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NVOL1" msdata:Caption="NVOL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PCOST1" msdata:Caption="PCOST" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NCOST1" msdata:Caption="NCOST" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GH20" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LH20" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RequestPersonnelInformation">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDREQUEST" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ID_CONTACT" type="xs:decimal" />
+              <xs:element name="CONTACT_PERSON" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_LAST_VISIT" type="xs:decimal" />
+              <xs:element name="LAST_VISIT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_VISA" type="xs:decimal" />
+              <xs:element name="VISA_TYPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_PERSONNEL" type="xs:decimal" />
+              <xs:element name="EMPLOYEE_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GENDER" type="xs:decimal" minOccurs="0" />
+              <xs:element name="COMPANY" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BOSIET_VALID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MEDICAL" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RequestPECStatus">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDPEC" type="xs:decimal" />
+              <xs:element name="PEC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDSTATUS" type="xs:decimal" />
+              <xs:element name="STATUS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="IDREQUEST" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

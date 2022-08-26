@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode>
+
+    <siteMapNode title="Dash Board" url="~/DashBoard.aspx" description=""></siteMapNode>
+    <siteMapNode url="" title="Integrated Activity Planning"  description="">
+      
+      <!--<item Text="Integrated Activity Planning" LookId="TopItemLook">-->
+      <siteMapNode title="My Change Requests" url="~/MyChangeRequests.aspx" description="" />
+      <siteMapNode title="Change Requests" url="~/ChangeRequests.aspx" description="" />
+      <siteMapNode title="Requests Pending My Action" url="~/RequestList.aspx" description="" />
+      <siteMapNode title="Requests Impacting My Activities" url="~/ImpactedParty.aspx" description="" />
+
+      <siteMapNode url="" title="Backend Management"  description="">
+        <siteMapNode title="Setups" url="~/Admin/Setups.aspx" description="" />
+        <siteMapNode title="Users Management" url="~/Admin/ViewUsers.aspx" description="" />
+        <siteMapNode title="Supporting Parties" url="~/Admin/Reponsibilities.aspx" description="" />
+      </siteMapNode>
+      
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

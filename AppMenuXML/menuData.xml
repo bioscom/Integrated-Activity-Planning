@@ -1,0 +1,91 @@
+<SiteMap>
+  <item Text="File" LookId="TopItemLook">
+    <item Text="New" />
+    <item Text="Open" Look-RightIconUrl="arrow.gif" Look-RightIconWidth="20" >
+      <item Text="Project" />
+      <item Text="Project From Web" />
+      <item Text="File"/>
+      <item Text="File From Web" />
+    </item>
+    <item Text="Edit with Notepad"/>
+    <item Text="Save As..." />
+    <item LookId="BreakItem" />
+    <item Text="Page Setup..." />
+    <item Text="Print..." />
+    <item LookId="BreakItem" />
+    <item Text="Close" />
+  </item>
+  <item Text="Edit" LookId="TopItemLook">
+    <item Text="Cut" />
+    <item Text="Copy" />
+    <item Text="Paste"/>
+    <item LookId="BreakItem" />
+    <item Text="Select All" />
+    <item Text="IntelliSense" Look-RightIconUrl="arrow.gif" Look-RightIconWidth="20">
+      <item Text="List Members" />
+      <item Text="Parameter Info" />
+      <item Text="Complete Word" />
+    </item>
+  </item>
+  <item Text="View" LookId="TopItemLook" >
+    <item Text="Stop" />
+    <item Text="Refresh" />
+    <item Text="Go To" Look-RightIconUrl="arrow.gif" Look-RightIconWidth="20">
+      <item Text="Back" />
+      <item Text="Forward" />
+      <item LookId="BreakItem" />
+      <item Text="MSDN Home Page" />
+      <item Text="CNET.com" />
+      <item Text="ASP.NET Menu" />
+    </item>
+    <item LookId="BreakItem" />
+    <item Text="Encoding" Look-RightIconUrl="arrow.gif" Look-RightIconWidth="20">
+      <item Text="Auto Select" />
+      <item LookId="BreakItem" />
+      <item Text="Western European (Windows)" />
+      <item Text="Western European (ISO)" />
+      <item Text="Unicode (UTF-8)" />
+      <item LookId="BreakItem" />
+      <item Text="More" Look-RightIconUrl="arrow.gif" Look-RightIconWidth="20">
+        <item Text="Arabic (DOS)" />
+        <item Text="Arabic (ISO)" />
+        <item Text="Arabic (Windows)" />
+        <item LookId="BreakItem" />
+        <item Text="Central European (DOS)" />
+        <item Text="Central European (Windows)" />
+        <item LookId="BreakItem" />
+        <item Text="Chinese Simplified" />
+        <item Text="Chinese Traditional" />
+        <item LookId="BreakItem" />
+        <item Text="Hebrew (DOS)" />
+        <item Text="Hebrew (ISO)" />
+        <item Text="Hebrew (Windows)" />
+      </item>
+      <item LookId="BreakItem" />
+      <item Text="Left-To-Right Document" />
+      <item Text="Right-To-Left Document" />
+    </item>
+    <item LookId="BreakItem" />
+    <item Text="Privacy Report..."/>
+    <item Text="Script Debugger" Look-RightIconUrl="arrow.gif" Look-RightIconWidth="20">
+      <item Text="Open" />
+      <item Text="Break at Next Statement" />
+    </item>
+    <item Text="Full Screen" />
+  </item>
+  <item Text="Tools" LookId="TopItemLook">
+    <item Text="Mail and News" />
+    <item Text="Synchronize..." />
+    <item Text="Windows Update" />
+    <item LookId="BreakItem" />
+    <item Text="Show Related Links" />
+    <item LookId="BreakItem" />
+    <item Text="Internet Options..." />
+  </item>
+  <item Text="Help" LookId="TopItemLook">
+    <item Text="Online Support" />
+    <item Text="Send Feedback" />
+    <item LookId="BreakItem" />
+    <item Text="About ComponentArt" />
+  </item>
+</SiteMap>

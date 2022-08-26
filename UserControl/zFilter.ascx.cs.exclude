@@ -1,0 +1,89 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class UserControl_zFilter : System.Web.UI.UserControl
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+
+        }
+    }
+
+    public void Init_Page()
+    {
+        try
+        {
+            List<OU> OUS = RequestFormRequirement.getOU();
+            foreach (OU ou in OUS)
+            {
+                ddlOU.Items.Add(new ListItem(ou.m_sOU, ou.m_iIDOU.ToString()));
+            }
+
+            List<PlanType> PlanTypes = RequestFormRequirement.getPlanTypes();
+            foreach (PlanType planType in PlanTypes)
+            {
+                ddlPlanType.Items.Add(new ListItem(planType.m_sPLANTYPE, planType.m_iPLANTYPEID.ToString()));
+            }
+
+            List<Location> Locations = RequestFormRequirement.getLocations();
+            foreach (Location locatn in Locations)
+            {
+                ddlLocation.Items.Add(new ListItem(locatn.m_sLOCATION, locatn.m_iLOCATIONID.ToString()));
+            }
+
+            List<Users> lstOriginators = UsersActions.lstGetOriginators();
+            foreach (Users sOriginator in lstOriginators)
+            {
+                ddlOriginator.Items.Add(new ListItem(sOriginator.m_sFullName, sOriginator.m_iUserId.ToString()));
+            }
+
+            //Load Status
+            ddlStatus.Items.Add(new ListItem(RequestStatus.m_sActivityOwner, RequestStatus.m_iActivityOwner.ToString()));
+            ddlStatus.Items.Add(new ListItem(RequestStatus.m_sIAPPlanner, RequestStatus.m_iIAPPlanner.ToString()));
+            ddlStatus.Items.Add(new ListItem(RequestStatus.m_sFunctionalRepresentatives, RequestStatus.m_iFunctionalRepresentatives.ToString()));
+            ddlStatus.Items.Add(new ListItem(RequestStatus.m_sProductionAssetRepresentative, RequestStatus.m_iProductionAssetRepresentative.ToString()));
+            ddlStatus.Items.Add(new ListItem(RequestStatus.m_sChangeReviewBoardChairman, RequestStatus.m_iChangeReviewBoardChairman.ToString()));
+            ddlStatus.Items.Add(new ListItem(RequestStatus.m_sNotApprovedByPlanner, RequestStatus.m_iNotApprovedByPlanner.ToString()));
+            ddlStatus.Items.Add(new ListItem(RequestStatus.m_sNotApprovedByFunctionalAuthoriser, RequestStatus.m_iNotApprovedByFunctionalAuthoriser.ToString()));
+            ddlStatus.Items.Add(new ListItem(RequestStatus.m_sNotApprovedByProductionAssetAuthorizer, RequestStatus.m_iNotApprovedByProductionAssetAuthorizer.ToString()));
+            ddlStatus.Items.Add(new ListItem(RequestStatus.m_sNotApprovedByChairmanReviewBoard, RequestStatus.m_iNotApprovedByChairmanReviewBoard.ToString()));
+            ddlStatus.Items.Add(new ListItem(RequestStatus.m_sApproved, RequestStatus.m_iApproved.ToString()));
+            ddlStatus.Items.Add(new ListItem(RequestStatus.m_sCancelled, RequestStatus.m_iCancelled.ToString()));
+
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.Fail(ex.TargetSite.Name + "\n \n" + ex.StackTrace + "\n \n" + ex.Message.ToString());
+        }
+    }
+    //protected void btnSearch_Click(object sender, EventArgs e)
+    //{
+        
+    //}
+    protected void ddlOU_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        
+    }
+    protected void ddlLocation_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void ddlPlanType_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void ddlOriginator_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+}

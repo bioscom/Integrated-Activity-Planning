@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>IAP Request</title>
+    </head>
+<body>
+    <br/>
+    Dear Sir/Ma, <br/><br/>
+    @@PROJECT_ACTIVITY, Request number: @@REQUEST_NUMBER, change request, sent to you on @@DATE_RECEIVED which may impact your activities has exceeded the Service Level Agreement.<br /><br />
+	The two work days notification has expired. <br/><br/>
+    This IAP change request was raised by @@ORIGINATOR.<br />
+    <br />
+    Click <a href=@@URL> here </a> to login.<br/>
+
+    <br />
+    <div>
+        For help and assistance, please contact @SSSADMIN
+        on ext. @@EXT or @@EMAIL
+    </div>
+            
+</body>
+</html>

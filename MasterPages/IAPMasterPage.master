@@ -1,0 +1,269 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="IAPMasterPage.master.cs" Inherits="IAPMasterPage" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Src="../UserControl/supportContact.ascx" TagName="supportContact" TagPrefix="uc1" %>
+<%@ Register Src="../UserControl/adminMenu.ascx" TagName="adminMenu" TagPrefix="uc2" %>
+<%@ Register Src="~/UserControl/oRequestArchive.ascx" TagPrefix="uc1" TagName="oRequestArchive" %>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Integrated Activity Planning</title>
+    <asp:ContentPlaceHolder ID="SheetContentPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <link href="../CSS/Styles.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="../CSS/navigationStyle.css" type="text/css" rel="stylesheet" />
+    <script language="javascript" type="text/javascript" src="../../JavaScript/eCTR.js"></script>
+
+    <script language="javascript" type="text/javascript">
+
+        (function (global, undefined) {
+            var widthTextBox, heightTextBox, leftTextBox, topTextBox;
+
+            function widthTextBox_load(sender, args) {
+                widthTextBox = sender;
+            }
+            function heightTextBox_load(sender, args) {
+                heightTextBox = sender;
+            }
+            function leftTextBox_load(sender, args) {
+                leftTextBox = sender;
+            }
+            function topTextBox_load(sender, args) {
+                topTextBox = sender;
+            }
+
+            function openRadWin() {
+                var wndw = radopen("RequestForChange.aspx", "AddRequest", 1100, 500);
+                wndw.set_visibleStatusbar(false);
+                wndw.Center();
+            }
+
+            global.openRadWin = openRadWin;
+            global.widthTextBox_load = widthTextBox_load;
+            global.heightTextBox_load = heightTextBox_load;
+            global.leftTextBox_load = leftTextBox_load;
+            global.topTextBox_load = topTextBox_load;
+        })(window);
+
+    </script>
+
+    <style type="text/css">
+        .header1 {
+            background-color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        html .t-container-fluid,
+        html .t-row-wrap > .t-row {
+            max-width: none;
+            max-height: none;
+        }
+
+        .menu {
+            background-color: #E8EAEC;
+        }
+
+        .header3 {
+            background: linear-gradient(#FDFEFE, #F0F2F4) repeat scroll 0 0 rgba(0, 0, 0, 0);
+        }
+
+
+        .content {
+        }
+
+        .article2 {
+            background-color: #EEF1F3;
+        }
+
+        .footer {
+            background-color: black;
+        }
+
+        html,
+        body,
+        form {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .container {
+            min-height: 100%;
+            position: relative;
+        }
+
+        .allContent {
+            padding-top: 40px;
+            padding-bottom: 84px; /* Height of the footer */
+        }
+
+        .colSideBar {
+            margin: 0px 0;
+            /*padding: 5px 5px;*/
+            margin-top: 50px;
+        }
+
+        .col {
+            float: left;
+            /*margin-left: 0.1em;
+            margin: 5px 0;
+            padding: 5px 5px;
+           margin-top:180px;*/
+        }
+    </style>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <telerik:RadScriptManager ID="Radscriptmanager1" runat="server"></telerik:RadScriptManager>
+
+        <telerik:RadWindowManager RenderMode="Lightweight" ID="mnuRadWindowManager" runat="server" EnableShadow="true">
+            <Windows>
+                <telerik:RadWindow RenderMode="Lightweight" ID="AddRequest" runat="server" ShowContentDuringLoad="false" Width="400px" EnableShadow="true" Modal="true"
+                    Height="400px" Title="IAP Change Request Form" Behaviors="Default">
+                </telerik:RadWindow>
+            </Windows>
+        </telerik:RadWindowManager>
+
+        <telerik:RadPageLayout runat="server" ID="PageLayoutMaster" HtmlTag="None" GridType="Fluid">
+            <Rows>
+                <telerik:LayoutRow RowType="Generic" CssClass="container">
+                    <Rows>
+                        <telerik:LayoutRow RowType="Generic" CssClass="allContent">
+                            <Rows>
+                                <telerik:LayoutRow RowType="Container" WrapperCssClass="header1" WrapperHtmlTag="Div">
+                                    <Content>
+                                        <div style="height: 40px">
+                                            <div id="header">
+                                                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/ShellLogo.png" Style="z-index: 102; left: 0px; position: absolute; top: 1px;" />
+                                                <div class="title" style="font-weight: bold">
+                                                    IAP Change Request Electronic Tool<br />
+                                                    (IAP CRET)
+                                                </div>
+                                                <div class="breadcrumb">
+                                                    Welcome
+                                                        <asp:Label ID="loggedinUserLabel" runat="server" ForeColor="Black"></asp:Label>&nbsp;| 
+                                                        <asp:LinkButton ID="lnkHomePage" runat="server" PostBackUrl="~/Default.aspx" ValidationGroup="MasterMaster">Home Page</asp:LinkButton>
+                                                    &nbsp;|
+                                                        <asp:HyperLink ID="logoutHyperLink" runat="server" NavigateUrl="http://sww.scin.cpdms.shell.com/pec">Logout</asp:HyperLink>
+                                                    <br />
+                                                    <asp:Label ID="dateLabel" runat="server" Text="" ForeColor="Black"></asp:Label>
+                                                    <br />
+                                                    Logged in as
+                                                        <asp:Label ID="roleLabel" runat="server" Style="position: static" Font-Bold="True" ForeColor="Red"></asp:Label>
+                                                </div>
+                                            </div>
+                                            <div id="navigation">
+                                                <div class="firstChild">
+                                                    <telerik:RadButton RenderMode="Lightweight" runat="server" AutoPostBack="false" OnClientClicked="openRadWin" Text="Raise Change Request" />
+                                                </div>
+                                                <div class="child" style="vertical-align: top">
+                                                    <telerik:RadComboBox RenderMode="Lightweight" ID="ddlSearch" runat="server" Height="400" Width="600px" Font-Size="10pt"
+                                                        DropDownWidth="600" EmptyMessage="Search for request..." AutoPostBack="true"
+                                                        EnableLoadOnDemand="true" Filter="Contains" OnItemsRequested="ddlSearch_ItemsRequested"
+                                                        Skin="Office2010Silver" OnSelectedIndexChanged="ddlSearch_SelectedIndexChanged">
+
+                                                        <HeaderTemplate>
+                                                            <table style="width: 590px; font-size: 9pt" cellspacing="0" cellpadding="0">
+                                                                <tr>
+                                                                    <td style="width: 100px; font: bold">Request Number</td>
+                                                                    <td style="width: 490px; font: bold">Activity</td>
+                                                                </tr>
+                                                            </table>
+                                                        </HeaderTemplate>
+
+                                                        <ItemTemplate>
+                                                            <table style="width: 590px; font-size: 9pt" cellspacing="0" cellpadding="0">
+                                                                <tr>
+                                                                    <td style="width: 100px;"><%# DataBinder.Eval(Container, "Text")%></td>
+                                                                    <td style="width: 490px;"><%# DataBinder.Eval(Container, "Attributes['PROJECT_ACTIVITY']")%></td>
+                                                                </tr>
+                                                            </table>
+                                                        </ItemTemplate>
+                                                    </telerik:RadComboBox>
+                                                </div>
+                                            </div>
+                                            <div id="navigation1">
+                                            </div>
+                                            <div id="navigation2">
+                                            </div>
+
+                                            <div id="navigation3">
+                                                <div class="xFChild">
+                                                    <uc2:adminMenu ID="adminMenu1" runat="server" />
+                                                </div>
+                                                <div class="xChild">
+                                                    <a id="dpeBackLink" href="javascript:history.back()">
+                                                        <asp:ImageButton ID="ImageButton2" runat="server" Style="border: 0" ImageUrl="~/Images/bullet_back.gif" />Back</a>
+                                                </div>
+                                            </div>
+                                            <div>
+                                            </div>
+                                        </div>
+                                    </Content>
+                                </telerik:LayoutRow>
+
+                                <telerik:LayoutRow RowType="Container" WrapperCssClass="menu">
+                                    <Content>
+                                        <div style="height: 100px">
+                                        </div>
+                                    </Content>
+                                </telerik:LayoutRow>
+
+                                <telerik:LayoutRow RowType="Container" WrapperCssClass="content" WrapperHtmlTag="Div" HtmlTag="None">
+                                    <Content>
+                                        <telerik:RadPageLayout runat="server" ID="PageLayoutConent" HtmlTag="None" GridType="Fluid">
+                                            <Rows>
+                                                <telerik:LayoutRow RowType="Container" WrapperCssClass="article1" WrapperHtmlTag="Div">
+                                                    <Columns>
+
+                                                        <telerik:LayoutColumn Span="12">
+                                                            <div style="width: 100%">
+                                                                <div style="float: left; width: 86%">
+                                                                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                                                    </asp:ContentPlaceHolder>
+                                                                </div>
+                                                                <div style="float: right; width: 12%; margin-top: 1.0em; border: 1px solid silver">
+                                                                    <asp:ContentPlaceHolder ID="ArchivePlaceHolder" runat="server">
+                                                                        <div style="overflow: auto">
+                                                                            <uc1:oRequestArchive runat="server" ID="oRequestArchive" />
+                                                                        </div>
+                                                                    </asp:ContentPlaceHolder>
+                                                                </div>
+                                                            </div>
+                                                        </telerik:LayoutColumn>
+
+                                                    </Columns>
+                                                </telerik:LayoutRow>
+                                            </Rows>
+                                        </telerik:RadPageLayout>
+                                    </Content>
+                                </telerik:LayoutRow>
+
+                            </Rows>
+                        </telerik:LayoutRow>
+
+                        <telerik:LayoutRow RowType="Container" WrapperCssClass="footer" WrapperHtmlTag="Div">
+                            <Content>
+                                <div id="footer">
+                                    <uc1:supportContact ID="supportContact1" runat="server" />
+                                    <br />
+                                    <span style="float: left; vertical-align: top">Production Business Improvement - Integrated Activity Planning</span>
+                                    <span style="float: right; vertical-align: top">Copyright &#169; 2014 Prodution Services </span>
+                                </div>
+                            </Content>
+                        </telerik:LayoutRow>
+                    </Rows>
+                </telerik:LayoutRow>
+            </Rows>
+        </telerik:RadPageLayout>
+    </form>
+</body>
+</html>

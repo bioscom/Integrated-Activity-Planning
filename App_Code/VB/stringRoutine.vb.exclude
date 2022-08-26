@@ -1,0 +1,299 @@
+﻿Imports Microsoft.VisualBasic
+Imports System.Diagnostics
+Imports System.Collections.Generic
+Imports System
+
+Public Class stringRoutine
+    Public Shared Function capFirstLetter(ByVal sText As String) As String
+        Dim sRet As String = ""
+        Try
+            sText = sText.Trim
+            Select Case sText.Length
+                Case 0
+                    sRet = ""
+                Case 1
+                    sRet = sText.ToUpper
+                Case Else
+                    sRet = sText.Substring(0, 1).ToUpper
+                    sRet = sRet & sText.Substring(1, sText.Length - 1).ToLower
+            End Select
+        Catch ex As Exception
+            Debug.Fail(ex.Message)
+        End Try
+        Return sRet
+    End Function
+    Public Shared Function sentenceCase(ByVal sText As String) As String
+        Dim sRet As String = ""
+        sentenceCase = StrConv(sText, vbProperCase) ' prepare the result
+        ' restore all those characters that were capitalized
+        For iLoop As Integer = 1 To Len(sText)
+            Select Case Asc(Mid$(sText, iLoop, 1))
+                Case 65 To 90   ' A-Z
+                    Mid$(sentenceCase, iLoop, 1) = Mid$(sText, iLoop, 1)
+            End Select
+        Next
+        Return sRet
+    End Function
+    Public Shared Function isEmailFormat(ByVal sEmail As String) As Boolean
+        Dim bRet As Boolean
+        Try
+            Dim oRegex As New System.Text.RegularExpressions.Regex("\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", Text.RegularExpressions.RegexOptions.IgnoreCase)
+            bRet = oRegex.IsMatch(sEmail)
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return bRet
+    End Function
+    Public Shared Function strDuplicate(ByVal sString As String, ByVal xLent As Short) As String
+        Dim sRet As String = ""
+        Try
+            sRet = StrDup(xLent, sString)
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Overloads Shared Function trimPadAtRite(ByVal sString As String, ByVal xLent As Short, ByVal cPadChar As Char) As String
+        Dim sRet As String = ""
+        Try
+            If sString.Length < xLent Then 'pad
+                sString = sString & StrDup(xLent, cPadChar)
+                sRet = sString.Substring(0, xLent)
+            Else
+                sRet = sString
+            End If
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Overloads Shared Function trimPadAtRite(ByVal sString As String, ByVal xLent As Short) As String
+        Dim sRet As String = ""
+        Try
+            sRet = trimPadAtRite(sString, xLent, " ")
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Overloads Shared Function trimPadAtLeft(ByVal sString As String, ByVal xLent As Short, ByVal cPadChar As Char) As String
+        Dim sRet As String = ""
+        Try
+            If sString.Length < xLent Then 'pad
+                sString = StrDup(xLent, cPadChar) & sString
+                sRet = sString.Substring(sString.Length - xLent)
+            Else
+                sRet = sString
+            End If
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Overloads Shared Function trimPadAtLeft(ByVal sString As String, ByVal xLent As Short) As String
+        Dim sRet As String = ""
+        Try
+            sRet = trimPadAtLeft(sString, xLent, " ")
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Shared Function strLeft(ByVal sString As String, ByVal xLent As Short) As String
+        Dim sRet As String = ""
+        Try
+            If xLent > sString.Length Then xLent = sString.Length
+            sRet = sString.Substring(0, xLent)
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Shared Function strRight(ByVal sString As String, ByVal xLent As Short) As String
+        Dim sRet As String = ""
+        Try
+            If xLent > sString.Length Then xLent = sString.Length
+            sRet = sString.Substring(sString.Length - xLent)
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Overloads Shared Function formatAsMoney(ByVal gValue As Decimal) As String 'no decimal, comma
+        Dim sRet As String = ""
+        Try
+            sRet = Format(gValue, "##,##0")
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Overloads Shared Function formatAsMoney(ByVal cMoneySign As Char, ByVal gValue As Decimal) As String
+        Dim sRet As String = ""
+        Try
+            sRet = cMoneySign & Format(gValue, "##,##0")
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+
+    'Public Overloads Shared Function formatAsMoney(ByVal cMoneySign As String, ByVal gValue As Decimal) As String
+    '    Dim sRet As String = ""
+    '    Try
+    '        sRet = cMoneySign & Format(gValue, "##,##0")
+    '    Catch ex As Exception
+    '        Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+    '    End Try
+    '    Return sRet
+    'End Function
+    Public Overloads Shared Function formatAsMoney(ByVal gValue As Decimal, ByVal cMoneyName As String) As String
+        Dim sRet As String = ""
+        Try
+            sRet = Format(gValue, "##,##0") & " " & cMoneyName
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+
+    Public Overloads Shared Function formatAsMoney(ByVal iValue As Long) As String
+        Dim sRet As String = ""
+        Try
+            sRet = Format(iValue, "##,##0")
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Overloads Shared Function formatAsMoney(ByVal cMoneySign As Char, ByVal iValue As Long) As String
+        Dim sRet As String = ""
+        Try
+            sRet = cMoneySign & Format(iValue, "##,##0")
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Overloads Shared Function formatAsMoney(ByVal iValue As Long, ByVal cMoneyName As String) As String
+        Dim sRet As String = ""
+        Try
+            sRet = Format(iValue, "##,##0") & " " & cMoneyName
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+
+    Public Overloads Shared Function formatAsBankMoney(ByVal gValue As Decimal) As String 'decimal ,comma
+        Dim sRet As String = ""
+        Try
+            sRet = Format(gValue, "##,##0.00")
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Overloads Shared Function formatAsBankMoney(ByVal cMoneySign As Char, ByVal gValue As Decimal) As String
+        Dim sRet As String = ""
+        Try
+            sRet = cMoneySign & Format(gValue, "##,##0.00")
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Overloads Shared Function formatAsBankMoney(ByVal cMoneySign As String, ByVal gValue As Decimal) As String
+        Dim sRet As String = ""
+        Try
+            sRet = cMoneySign & Format(gValue, "##,##0.00")
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Overloads Shared Function formatAsBankMoney(ByVal gValue As Decimal, ByVal cMoneyName As String) As String
+        Dim sRet As String = ""
+        Try
+            sRet = Format(gValue, "##,##0.00") & " " & cMoneyName
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+
+    Public Overloads Shared Function formatAsNumberMoney(ByVal gValue As Decimal) As String 'decimal,no comme
+        Dim sRet As String = ""
+        Try
+            sRet = Format(gValue, "##,##0.00").Replace(",", "")
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Overloads Shared Function formatAsNumberMoney(ByVal cMoneySign As Char, ByVal gValue As Decimal) As String
+        Dim sRet As String = ""
+        Try
+            sRet = cMoneySign & Format(gValue, "##,##0.00").Replace(",", "")
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Overloads Shared Function formatAsNumberMoney(ByVal gValue As Decimal, ByVal cMoneyName As String) As String
+        Dim sRet As String = ""
+        Try
+            sRet = Format(gValue, "##,##0.00").Replace(",", "") & " " & cMoneyName
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+
+    Public Shared Function splitString(ByVal sData As String, ByVal sSpliter As String) As List(Of String)
+        Dim oRet As New List(Of String)
+        Try
+            'qwe==sns
+            Dim iPos As Integer
+            While sData.Length > 0
+                iPos = sData.IndexOf(sSpliter)
+                If iPos >= 0 Then
+                    If iPos > 0 Then oRet.Add(sData.Substring(0, iPos))
+                    sData = sData.Substring(iPos + sSpliter.Length)
+                Else
+                    If sData.Length > 0 Then oRet.Add(sData)
+                    sData = ""
+                End If
+            End While
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return oRet
+    End Function
+    Public Shared Function clipBegin(ByVal sString As String, ByVal sClip As String) As String
+        Dim sRet As String = ""
+        Try
+            If sString.StartsWith(sClip) Then
+                sRet = sString.Substring(sClip.Length)
+            Else
+                sRet = sString
+            End If
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+    Public Shared Function clipEndin(ByVal sString As String, ByVal sClip As String) As String
+        Dim sRet As String = ""
+        Try
+            If sString.EndsWith(sClip) Then
+                sRet = sString.Substring(0, sString.Length - sClip.Length)
+            Else
+                sRet = sString
+            End If
+        Catch ex As Exception
+            Debug.Fail(ex.TargetSite.Name & vbNewLine & ex.Message & vbNewLine & ex.StackTrace)
+        End Try
+        Return sRet
+    End Function
+End Class

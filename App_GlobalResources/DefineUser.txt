@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>IAP Request</title>
+    <style type="text/css">
+        .myStyle
+        {
+            font-family: Futura-Medium;
+            font-size: 12pt;
+        }
+    </style>
+    </head>
+<body>
+    <br/>
+	<span class="myStyle">Dear Sir/Madam, </span> <br class="myStyle"/><br class="myStyle"/>
+
+	<span class="myStyle">This is to notify you of the creation of your profile as a @@ROLE in the IAP Change Control Tool.</span><br class="myStyle" /><br class="myStyle"/>
+	<span class="myStyle">This means that, when necessary, you will be required to login and approve IAP change request(s) generated in the tool, after reviewing comments from the @@ActivityOwner@@IAPPlanner@@FunctionalRepresentative@@AssetProductionRepresentative</span>
+	<br class="myStyle" /><br class="myStyle"/>
+	<span class="myStyle">For further clarification please contact @@Contacts</span>
+	<br class="myStyle" /><br class="myStyle"/>
+	
+	<span class="myStyle"><span class="myStyle">Please click </span> <a href=@@URL> 
+    <span class="myStyle">here </span> </a><span class="myStyle">to Login.</span></span>
+    <br class="myStyle"/><br class="myStyle"/>
+
+	<span class="myStyle">Kind Regards </span> 
+	<br class="myStyle"/><span class="myStyle" />IAP Change Control Team</span><br/><br/>
+
+	      
+</body>
+</html>

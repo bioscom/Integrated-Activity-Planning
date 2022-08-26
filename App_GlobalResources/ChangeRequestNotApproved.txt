@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>IAP Request</title>
+    </head>
+<body>
+    <br/>
+    Dear Sir/Ma, <br/><br/>
+    @@PROJECT_ACTIVITY, Request number: @@REQUEST_NUMBER, change request, not supported or approved. <br />
+    @@APPROVER (@@ROLE).<br /> <br />
+	Reason not supported or approved: <b>@@REASON<b/>
+    <br />
+    Click <a href=@@URL> here </a> to login.<br/>
+
+    <br />
+    <div>
+        For help and assistance, please contact @SSSADMIN
+        on ext. @@EXT or @@EMAIL
+    </div>
+            
+</body>
+</html>

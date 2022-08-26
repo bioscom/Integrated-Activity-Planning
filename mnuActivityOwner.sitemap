@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode>
+    <siteMapNode title="Dash Board" url="~/DashBoard.aspx" description=""></siteMapNode>
+
+    <siteMapNode url="" title="Integrated Activity Planning (Change Requestor)"  description="">      
+      <siteMapNode title="My Change Requests" url="~/MyChangeRequests.aspx" />
+      <siteMapNode title="Change Requests" url="~/ChangeRequests.aspx" />
+      <siteMapNode title="Requests Pending My Action" url="~/RequestList.aspx" />
+      <siteMapNode title="Requests Impacting My Activities" url="~/ImpactedParty.aspx" description="" />
+      
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

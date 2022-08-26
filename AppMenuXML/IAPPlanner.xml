@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<SiteMap>
+  <!--<item Text="Home" LookId="TopItemLook" NavigateUrl="~/index.aspx" />-->
+
+  <!--<item Text="Integrated Activity Planning" LookId="TopItemLook">-->
+  <item Text="Change Control Request Form" NavigateUrl="~/Common/Default.aspx"/>
+  <item Text="Change Requests" NavigateUrl="~/Common/ChangeRequests.aspx" />
+  <item Text="My Change Requests" NavigateUrl="~/Common/myIAPRequestList.aspx" />
+  <item Text="Requests Pending My Approval" NavigateUrl="~/Common/IAPRequestList.aspx" />
+  <!--<item Text="Requests Approved" NavigateUrl="~/Common/ApprovedRequests.aspx" />
+  </item>-->
+
+  <!--<item Text="Absence Management" Look-RightIconUrl="arrow.gif" Look-RightIconWidth="20">
+    <item Text="IAP Approver Router" NavigateUrl="~/Common/IAPApproverRouter.aspx" />
+  </item>-->
+
+  <item Text="Help" LookId="TopItemLook">
+    <item Text="Online Support Manuals" />
+    <item Text="Send Feedback" />
+    <item Text="About IAP Change Request" />
+  </item>
+</SiteMap>
